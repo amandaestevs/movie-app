@@ -1,0 +1,82 @@
+@use 'index.scss';
+
+
+.icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #A9A9A9;
+}
+
+// top nav
+.top-nav {
+    @include index.flex-center;
+    width: 100%;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: index.$background-gray;
+    color: index.$font-color;
+}
+
+.top-nav-container {
+    @include index.flex-space-between;
+    width: 95%;
+}
+
+.menu-options {
+  @include index.flex-space-between;
+  min-width: 20%;
+
+  li {
+    margin-right: 5px;
+    a {
+      color: #A9A9A9;
+    }
+  }
+
+  .active {
+    a {
+      color: white;
+    }
+  }
+}
+// bottom nav
+.bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100vw;
+    padding: 1fr;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: index.$main-purple;
+    color: index.$font-color;
+}
+
+.bottom-nav-link {
+   @include index.flex-center;
+   padding: 10px 0;
+   width: 100%;
+   cursor: pointer;
+
+   .active {
+    color: white;
+   }
+}
+
+.logout-popup {
+  @include index.flex-center;
+  display: none;
+  padding: 5px 10px;
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.show-btn {
+  display: flex;
+}

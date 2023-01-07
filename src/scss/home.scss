@@ -1,0 +1,51 @@
+@use './index.scss';
+
+.home-page {
+    @include index.flex-center;
+    background-color: index.$background-gray;
+    overflow-x: hidden;
+}
+
+.content-container {
+    @include index.flex-center-col;
+    width: 100%;
+    margin: 1rem auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    margin-top: 40px;
+}
+
+.movie-row {
+    width: 95%;
+    margin-bottom: 1.2rem;
+    .title {
+        color: #fff;
+        margin-bottom: 1rem;
+        margin-left: 0.3rem;
+    }
+}
+
+.movie-card {
+    width: 130px;
+    height: 180px;
+    transition: transform 0.5s;
+    padding: 5px;
+    cursor: pointer;
+     
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+       transform: scale(1.08);
+    }
+}
+
+.slick-dots li button:before {
+    color: #c3c3c3 !important;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #fff !important;
+}

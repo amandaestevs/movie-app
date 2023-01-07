@@ -1,0 +1,54 @@
+@use './index.scss';
+
+.search-page {
+    @include index.flex-center-col;
+    justify-content: flex-start;
+    background-color: index.$background-gray;
+    width: 100%;
+    margin-top: 40px;
+    padding: 1rem 0;
+    min-height: 93vh;
+}
+
+.search-bar-container {
+   @include index.flex-center;
+   width: 100%;
+   padding: 1rem 0;
+}
+
+.search-bar {
+    @include index.flex-center;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    width: 50%;
+    max-height: 20vh;
+
+   input {
+    border: none;
+    width: 95%;
+    padding: 0 15px;
+    outline: none;
+   }
+}
+
+.search-results-container {
+    @include index.flex-center;
+    background-color: index.$background-gray;
+    width: 99%;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    height: 100%;
+}
+
+.no-results {
+    @include index.flex-center;
+    width: 100%;
+    height: 100%;
+    margin-top: 1rem;
+
+    h2 {
+        color: white;
+    }
+}

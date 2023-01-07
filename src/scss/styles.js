@@ -1,0 +1,7 @@
+import './index.scss'
+import './forms.scss'
+import './home.scss'
+import './navbar.scss'
+import './search.scss'
+import './lists.scss'
+import './moviePage.scss'

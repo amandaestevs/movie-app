@@ -1,0 +1,75 @@
+@use './index.scss';
+
+.movie-page {
+    background-color: index.$background-gray;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        column-gap: 1.5rem;
+        width: 90%;
+        min-height: 100%;
+        margin-top: 4rem;
+        color: #fff;
+    }
+}
+
+.content > .left {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.description {
+    max-width: 50vw;
+    h2 {
+        margin-bottom: 0.2rem;
+    }
+
+    .media_info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.8rem;
+    }
+}
+
+.release-year {
+    margin-right: 0.4rem;
+}
+
+.options {
+    background-color: #36454F;
+    border-radius: 0.4rem;
+
+    div {
+        padding: 10px;
+    }
+
+    div:not(:last-child) {
+      border-bottom: 1px solid #A9A9A9;
+    }
+
+    .icons {
+      @include index.flex-center;
+      font-size: 1.5rem;
+
+      span {
+        @include index.flex-center;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+    }
+
+    button {
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+    }
+}

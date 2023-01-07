@@ -1,0 +1,177 @@
+
+@use 'index.scss';
+
+.login-page {
+    @include index.flex-center-col;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+.login-form {
+    @include index.flex-center-col;
+    width: 50vw;
+    height: 50vh;
+    opacity: 1;
+    padding: 1rem 2rem;
+    row-gap: 1rem;
+    border-radius: 1rem;
+}
+
+.invalid-credentials {
+    @include index.flex-center-col;
+    background-color: #FFCCCB;
+    color: red;
+    width: 15rem;
+    padding: 1rem;
+    display: none;
+}
+
+.input-container {
+    position: relative;
+
+    input {
+      border: 1px solid black;
+      border-radius: 0.3rem;
+      padding: 0.6rem;
+      width: 15rem;
+      height: 2.5rem;
+      background: white;
+
+      &:focus {
+        outline: none;
+        border: 2px solid blueviolet;
+      }
+
+      &:focus + label .text, &:not(:placeholder-shown) + label .text {
+         background-color: white;
+         font-size: 1rem;
+         border-color: blueviolet;
+         color: blueviolet;
+         transform: translateY(-100%) scale(.9);
+         padding: 0 1px;
+      }
+    }
+
+    label {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      left: 0.5rem;
+      right: 0;
+      border: 3px solid transparent;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+}
+
+.sign-in-btn {
+    background-image: linear-gradient(to right, #5C258D 0%, #4389A2 51%, #5C258D 100%);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 0.5rem 2rem;
+    width: 14rem;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    background-size: 200% auto;
+    display: block;
+    transition: 0.5s;
+    
+    &:hover {
+        background-position: right center;
+        box-shadow: none;
+    }
+}
+
+.forgot-password-text {
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    background: transparent;
+    color: blue;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+hr {
+    height: 1px;
+    width: 20rem;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.sign-up-container {
+    @include index.flex-center-col;
+    h4 {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.sign-up-btn {
+    width: 15rem;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid #4389A2;
+    transition: 0.4s;
+
+    &:hover {
+       background-color: #4389A2;
+       color:#fff;
+    }
+}
+
+.sign-up-modal {
+  @include index.absoluteCenter(300px, 415px);
+  background-color: white;
+  z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  overflow-y: auto;
+}
+
+.sign-up-heading {
+    @include index.flex-center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.close-icon {
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.sign-up-form {
+    @include index.flex-center-col;
+    row-gap: 2rem;
+    padding: 0.2rem 1rem;
+    
+    input {
+         &:invalid[focused = true] {
+        border-color: red;
+         
+        &:invalid[focused = true] ~ .invalid-message {
+            display: block;
+        }
+        }
+    }
+}
+
+.invalid-message {
+    position: absolute;
+    top: 2.6rem;
+    left: 0.5rem;
+    font-size: 0.6rem;
+    display: none;
+    color: red;
+}
+
