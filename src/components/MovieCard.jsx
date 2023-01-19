@@ -1,16 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import { BsTrash } from "react-icons/bs";
 import { MovieContext } from "../context/MovieContext";
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, page}) {
   const { setMovie } = useContext(MovieContext);
+  const { updateListItems , setListItems, fetchListItems} = useContext(UserContext);
+  const {name, id} = useParams();
+
   const handleClick = () => {
-    setMovie(movie);
+     setMovie(movie)
   };
+
+  const deleteItems = async (e) => {
+    e.preventDefault()
+
+    if(name === 'favorites' || name === 'watchlist'){
+      updateListItems(name, 'delete', movie)
+      setListItems(null)
+      const res = await fetchListItems(name)
+      return setListItems(res)
+    }
+    updateListItems(id, 'delete', movie)
+    setListItems(null)
+    const res = await fetchListItems(id)
+    setListItems(res)
+  }
+
   return (
     <Link to={`/movie/${movie.id}`} onClick={handleClick}>
       <div className="movie-card">
-        <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
+        {page && <div className="card-delete-btn" onClick={(e) => deleteItems(e)}><BsTrash className="trash-icon"/></div>}
+        <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.name || movie.title}/>
       </div>
     </Link>
   );

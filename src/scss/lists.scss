@@ -14,12 +14,6 @@
         margin-top: 4rem;
         color: #fff;
     }
-
-    .movies-container {
-        @include index.flex-center;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
 }
 
 .lists-container {
@@ -28,6 +22,7 @@
     flex-wrap: wrap;
     gap: 1rem;
 }
+
 
 .favorites, .watchlist, .list {
     @include index.flex-center-col;
@@ -41,11 +36,56 @@
     }
 }
 
+.movies-container {
+    @include index.flex-center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.list-heading {
+    @include index.flex-center;
+    width: 100%;
+    padding: 0.5rem 0;
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 30px;
+      border: none;
+      background-color: red;
+      border-radius: 1rem;
+      color: #fff;
+      padding: 0.5rem 1rem;
+    }
+}
+
 .list-card {
     background-color: #565656;
     border-radius: 10px;
     width: 100%;
     height: 90%;
+}
+
+.are-u-sure {
+    @include index.absoluteCenter(200px, 80px);
+    width: 200px;
+    height: 80px;
+    padding: 5px 10px;
+    background-color: #8b8b8b;
+
+    h4 {
+        margin-bottom: 0.8rem;
+    }
+    .options {
+        display: flex;
+
+        button {
+            padding: 0.2rem 0.4rem;
+            &:hover {
+                background-color: #c3c3c3;
+            }
+        }
+    }
 }
 
 // add new list form and button
@@ -78,7 +118,7 @@
 .new-list-form {
     background: linear-gradient(to top, #272727, #565656, #8b8b8b, #c3c3c3 85%, #ffffff 100%);
     color: #fff;
-    width: 100vw;
+    width: 100%;
     height: 90vh;
     z-index: 100;
     position: absolute;
@@ -146,3 +186,4 @@
         }
     }
 }
+

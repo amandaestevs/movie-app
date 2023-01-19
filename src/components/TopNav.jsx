@@ -1,4 +1,3 @@
-import "../scss/navbar.scss";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import useViewport from "../hooks/useViewport";
 import useAuth from "../hooks/useAuth";

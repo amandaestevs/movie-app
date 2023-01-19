@@ -65,6 +65,10 @@
    }
 }
 
+.hidden {
+  display: none;
+}
+
 .logout-popup {
   @include index.flex-center;
   display: none;
@@ -76,6 +80,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
 
 .show-btn {
   display: flex;

@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
       type: Array, 
       default: []
    },
-   lists: [{name: String, items: Array}]
+   lists: [{name: String, items: {type: Array, default: []}}]
 })
 
 const User = mongoose.model("User", UserSchema);

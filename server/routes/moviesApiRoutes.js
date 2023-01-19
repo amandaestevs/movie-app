@@ -89,6 +89,9 @@ const router = express.Router();
     
     try {
         const resultsArray = await Promise.all(listItems.map(async (item) => {
+          if(!item.media_type){
+            item.media_type = 'movie'
+          }
           const response = await axios.get(`https://api.themoviedb.org/3/${item.media_type}/${item.id}?api_key=${process.env.TMDB_KEY}`);
           const data = response.data;
           return data

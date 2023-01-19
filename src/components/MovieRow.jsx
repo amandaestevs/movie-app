@@ -22,8 +22,8 @@ function MovieRow({ name, url }) {
     swipeToSlide: false,
     initialSlide: 0,
     speed: 500,
-    // slidesToShow: 6.2,
-    // slidesToScroll: 6,
+    slidesToShow: 6.2,
+    slidesToScroll: 6,
     responsive: [
       {
         breakpoint: 500,

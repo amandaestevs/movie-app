@@ -73,3 +73,35 @@
         color: #fff;
     }
 }
+
+.add-to-list-modal {
+  @include index.absoluteCenter(200px, 150px);
+  width: 250px;
+  height: 200px;
+  background-color: #36454F;
+
+  .heading {
+    @include index.flex-space-between;
+    padding: 0.3rem 0.6rem;
+
+    .icon {
+        color: #fff;
+    }
+  }
+
+  .container {
+    @include index.flex-center-col;
+    
+    .list {
+      width: 100%;
+      height: fit-content;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #A9A9A9;
+      border-top: 1px solid #A9A9A9;
+
+      &:hover {
+        background-color: #A9A9A9;
+      }
+    }
+  }
+}
