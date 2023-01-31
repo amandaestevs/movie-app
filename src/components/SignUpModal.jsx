@@ -11,7 +11,7 @@ function SignUpModal({ setIsSignUpForm }) {
     password: "",
     confirmPassword: "",
   });
-
+ 
   const handleChange = (e) => {
     setUserData({
       ...userData, 

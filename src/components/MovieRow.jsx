@@ -16,31 +16,41 @@ function MovieRow({ name, url }) {
     getData();
   }, [url]);
 
-  const settings = {
+  const settings = { 
     dots: true,
     infinite: false,
-    swipeToSlide: false,
     initialSlide: 0,
-    speed: 500,
-    slidesToShow: 6.2,
-    slidesToScroll: 6,
+    slidesToScroll: 1,
+    centerMode: false,
     responsive: [
       {
-        breakpoint: 500,
+        breakpoint: 340,
         settings: {
-          initialSlide: 0,
-          slidesToShow: 2.2,
-          slidesToScroll: 1,
+          slidesToShow: 1.8,
           arrows: false,
           dots: false
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 400,
         settings: {
-          initialSlide: 0,
+          slidesToShow: 2.2,
+          arrows: false,
+          dots: false
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
           slidesToShow: 3.2,
-          slidesToScroll: 1,
+          arrows: false,
+          dots: false
+        },
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          slidesToShow: 4.2,
           arrows: false,
           dots: false
         },
@@ -48,7 +58,6 @@ function MovieRow({ name, url }) {
       {
         breakpoint: 950,
         settings: {
-          initialSlide: 0,
           slidesToShow: 5.2,
           slidesToScroll: 5,
         },
@@ -56,7 +65,6 @@ function MovieRow({ name, url }) {
       {
         breakpoint: 2000, 
         settings: {
-          initialSlide: 0,
           slidesToShow: 6.2,
           slidesToScroll: 6,
         }
@@ -67,7 +75,7 @@ function MovieRow({ name, url }) {
   return (
     <div className="movie-row">
       <h4 className="title">{name}</h4>
-      <Slider {...settings} className="slider">
+      <Slider {...settings}>
         { movies.map((movie) => {
             return <MovieCard key={movie.id} movie={movie} />;
           })}

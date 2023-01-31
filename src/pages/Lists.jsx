@@ -7,7 +7,7 @@ function Lists() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [newListName, setNewListName] = useState("");
   const [userLists, setUserLists] = useState(null);
-  const { fetchListItems, fetchLists, setListItems, updateList } = useContext(UserContext);
+  const { fetchLists, updateList, setListItems } = useContext(UserContext);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -16,12 +16,6 @@ function Lists() {
     await updateList(list, action);
     setIsFormOpen(false)
     window.location.reload()
-  };
-
-  const listClicked = async (list) => {
-     setListItems(null)
-     const res = await fetchListItems(list);
-     setListItems(res)
   };
 
   useEffect(() => {
@@ -37,13 +31,17 @@ function Lists() {
       <div className="content">
         <div className="lists-container">
           <Link to={`/list/favorites/1`}>
-            <div className="favorites" onClick={() => listClicked("favorites")}>
+            <div className="favorites" 
+            onClick={() => setListItems(null)}
+            >
               <div className="list-card"></div>
               <h3 className="list-title">Favorites</h3>
             </div>
           </Link>
           <Link to={`/list/watchlist/2`}>
-            <div className="watchlist" onClick={() => listClicked("watchlist")}>
+            <div className="watchlist"
+             onClick={() => setListItems(null)}
+             >
               <div className="list-card"></div>
               <h3 className="list-title">Watchlist</h3>
             </div>
@@ -54,7 +52,7 @@ function Lists() {
                 <Link to={`/list/${list.name}/${list._id}`} key={list._id}>
                   <div
                     className="list"
-                    onClick={() => listClicked(list.name)}
+                    onClick={() => setListItems(null)}
                     key={list._id}
                   >
                     <div className="list-card"></div>

@@ -13,6 +13,7 @@ function Search() {
   };
 
   useEffect(() => {
+    if (search == " ") return setResults([]);
     getResults();
   }, [search]);
 
@@ -21,15 +22,13 @@ function Search() {
       params: { search },
     });
     if (res.status !== 200) return;
-
-    const data = res.data;
-    setResults(data);
+    setResults(res.data);
   };
 
   return (
     <div className="search-page">
       <div className="search-bar-container">
-        <form className="search-bar">
+        <form className="search-bar" onSubmit={(e) => e.preventDefault()}>
           <AiOutlineSearch className="icon" />
           <input
             type="search"
@@ -41,9 +40,12 @@ function Search() {
       </div>
       <div className="search-results-container">
         {results.length === 0 ? (
-          <div className="no-results"><h2>Start Searching</h2></div>
+          <div className="no-results">
+            <h2>Start Searching</h2>
+          </div>
         ) : (
           results.map((movie) => {
+            if (movie.poster_path == null) return null
             return <MovieCard key={movie.id} movie={movie} />;
           })
         )}

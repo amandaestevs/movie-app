@@ -6,25 +6,18 @@
     width: 100vw;
     height: 100vh;
     background-color: white;
+    overflow: hidden;
 }
 
 .login-form {
     @include index.flex-center-col;
-    width: 50vw;
-    height: 50vh;
+    width: 98%;
+    height: 80%;
     opacity: 1;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     row-gap: 1rem;
     border-radius: 1rem;
-}
-
-.invalid-credentials {
-    @include index.flex-center-col;
-    background-color: #FFCCCB;
-    color: red;
-    width: 15rem;
-    padding: 1rem;
-    display: none;
+    position: relative;
 }
 
 .input-container {
@@ -34,7 +27,7 @@
       border: 1px solid black;
       border-radius: 0.3rem;
       padding: 0.6rem;
-      width: 15rem;
+      width: 14rem;
       height: 2.5rem;
       background: white;
 
@@ -114,7 +107,7 @@ hr {
 }
 
 .sign-up-btn {
-    width: 15rem;
+    width: 14rem;
     background-color: transparent;
     border-radius: 10px;
     padding: 0.5rem 2rem;
@@ -166,6 +159,28 @@ hr {
     }
 }
 
+.invalid-credentials {
+    background-color: #FFCCCB;
+    color: red;
+    width: 15rem;
+    height: auto;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+
+    &.hide {
+        display: none;
+    }
+
+    &.show {
+       @include index.flex-center-col;
+    }
+
+    h3, p {
+        text-align: center;
+    }
+}
+
 .invalid-message {
     position: absolute;
     top: 2.6rem;
@@ -174,4 +189,3 @@ hr {
     display: none;
     color: red;
 }
-

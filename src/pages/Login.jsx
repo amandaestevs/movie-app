@@ -8,7 +8,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState(false);
-  const { loginUser } = useAuth()
+  const [errorMessage, setErrorMessage] = useState(null);
+  const { loginUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSignUpClick = (e) => {
@@ -17,34 +18,48 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    const loginStatus = await loginUser({email, password})
-    if(loginStatus === 'logged in') {
-       setInvalid(false)
-       navigate('/home')
+    e.preventDefault();
+    const loginStatus = await loginUser({ email, password });
+    if (loginStatus === "logged in") {
+      setInvalid(false);
+      setErrorMessage(null);
+      navigate("/home");
+    } else {
+      setInvalid(true);
+      setErrorMessage(loginStatus);
     }
-
-    if(loginStatus === 'fail') {
-      setInvalid(true)
-    }
-  }
+  };
 
   return (
     <div className={`login-page ${isSignUpForm && "darken-background"}`}>
-      <div className={`invalid-credentials ${invalid && 'show'}`}>
-         <h3>Error</h3>
-         <p>Invalid Credentials</p>
-      </div>
       <form className="login-form" onSubmit={handleLogin}>
+        <div
+          className={
+            invalid ? "invalid-credentials show" : "invalid-credentials hide"
+          }
+        >
+          <h3>Error</h3>
+          <p>{errorMessage}</p>
+        </div>
         <div className="input-container">
-          <input type="email" id="login-email" placeholder=" " onChange={(e) => setEmail(e.target.value)}/>
+          <input
+            type="email"
+            id="login-email"
+            placeholder=" "
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label htmlFor="login-email">
             <span className="text">Email</span>
           </label>
         </div>
 
         <div className="input-container">
-          <input type="password" id="login-password" placeholder=" " onChange={(e) => setPassword(e.target.value)}/>
+          <input
+            type="password"
+            id="login-password"
+            placeholder=" "
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <label htmlFor="login-password">
             <span className="text">Password</span>
           </label>

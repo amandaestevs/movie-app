@@ -1,28 +1,14 @@
 import { BiSearch } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
 import { BiListUl } from "react-icons/bi";
-import useViewport from "../hooks/useViewport";
-import { useState } from "react";
+import useWindow from "../hooks/useWindow";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 function BottomNav() {
-  const { isDesktop } = useViewport();
-  const [active, setActive] = useState(0);
-
-  const checkActive = () => {
-    if (window.location.pathname === "/home") return setActive(0);
-    if (window.location.pathname === "/search") return setActive(1);
-    if (window.location.pathname === "/lists") return setActive(2);
-    if (window.location.pathname.includes('/movie')) return setActive(null);
-  };
-
-  useEffect(() => {
-    checkActive();
-  }, []);
+  const { isDesktop, active, setActive } = useWindow();
 
   return (
-    <nav className={isDesktop ? "hidden" : "bottom-nav"}>
+    <nav className={isDesktop ? "hidden-nav" : "bottom-nav"}>
       <div className="bottom-nav-link">
         <Link to="/home">
           <AiFillHome

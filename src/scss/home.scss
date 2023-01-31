@@ -4,15 +4,16 @@
     @include index.flex-center;
     background-color: index.$background-gray;
     overflow-x: hidden;
+    margin-top: 2.5rem;
 }
 
 .content-container {
     @include index.flex-center-col;
     width: 100%;
+    min-height: 100vh;
     margin: 1rem auto;
     overflow-x: hidden;
     padding: 1rem;
-    margin-top: 40px;
 }
 
 .movie-row {
@@ -25,6 +26,7 @@
     }
 }
 
+//card
 .movie-card {
     width: 130px;
     height: 180px;

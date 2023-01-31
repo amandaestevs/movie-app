@@ -1,44 +1,33 @@
 import { HiOutlineUserCircle } from "react-icons/hi";
-import useViewport from "../hooks/useViewport";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import useWindow from "../hooks/useWindow";
 import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const LogoutPopUp = ({logoutClicked, isLogoutVisible}) => {
+const LogoutModal = ({logoutClicked, isLogoutVisible}) => {
    return (
-    <div className={isLogoutVisible ? `logout-popup show-btn` : `logout-popup`} onClick={logoutClicked}>
+    <div className={isLogoutVisible ? `logout-modal show-btn` : `logout-modal`} onClick={logoutClicked}>
       Log out
     </div>
    )
 }
 
 function TopNav() {
-  const { isDesktop } = useViewport();
+  const { isDesktop, active, setActive } = useWindow();
   const { logoutUser } = useAuth();
-  const [active, setActive] = useState(0);
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
-
-  const checkActive = () => {
-    if (window.location.pathname === "/home") return setActive(0);
-    if (window.location.pathname === "/search") return setActive(1);
-    if (window.location.pathname === "/lists") return setActive(2);
-    if (window.location.pathname.includes('/movie')) return setActive(null);
-  };
 
   const logoutClicked = () => {
      setIsLogoutVisible(false);
      logoutUser();
   }
 
-  useEffect(() => {
-    checkActive();
-  }, []);
-
   return (
     <>
     <nav className={"top-nav"}>
       <div className="top-nav-container">
-        <div className="logo">MovieApp</div>
+        <Link to={"/home"}><div className="logo">MovieApp</div></Link>
         {isDesktop && (
           <ul className="menu-options">
             <li
@@ -61,13 +50,14 @@ function TopNav() {
             </li>
           </ul>
         )}
-        <div className="profile-icon">
-          <HiOutlineUserCircle className="icon" onClick={() => setIsLogoutVisible(!isLogoutVisible)}/>
+        <div className={isLogoutVisible ? "logout-button active" : "logout-button"} onClick={() => setIsLogoutVisible(!isLogoutVisible)}>
+          {isLogoutVisible ? <AiOutlineUp className="icon arrow"/> : <AiOutlineDown className="icon arrow" />}
+          <HiOutlineUserCircle className="icon" />
+          {isLogoutVisible && <LogoutModal logoutClicked={logoutClicked} isLogoutVisible={isLogoutVisible}/>}
         </div>
       </div>
     </nav>
 
-    {isLogoutVisible && <LogoutPopUp logoutClicked={logoutClicked} isLogoutVisible={isLogoutVisible}/>}
     </>
   );
 }

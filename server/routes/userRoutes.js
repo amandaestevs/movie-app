@@ -18,7 +18,7 @@ router.get("/:list/:id", async (req, res) => {
   try {
     switch (list) {
       case "favorites":
-        const favList = await User.find({ _id: userID }).select("favorites");
+        const favList = await User.find({ _id: userID }).select("favorites"); 
         res.status(200).json(favList);
         break;
       case "watchlist":

@@ -1,12 +1,20 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from "react";
 
 export const MovieContext = createContext({});
-function MovieProvider({children}) {
-    const [movie, setMovie] = useState({});
+function MovieProvider({ children }) {
+  const [movie, setMovie] = useState(() => {
+    return JSON.parse(window.localStorage.getItem("movie_info")) || {};
+  });
 
-    return (
-        <MovieContext.Provider value={{movie, setMovie}}>{children}</MovieContext.Provider>
-    )
+  useEffect(() => {
+    window.localStorage.setItem("movie_info", JSON.stringify(movie));
+  }, [movie]);
+
+  return (
+    <MovieContext.Provider value={{ movie, setMovie }}>
+      {children}
+    </MovieContext.Provider>
+  );
 }
 
-export default MovieProvider
+export default MovieProvider;

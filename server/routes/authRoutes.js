@@ -36,7 +36,12 @@ router.post("/login", async (req, res) => {
   const email = req.body.email.toLowerCase();
   try {
     const user = await User.findOne({ email });
-    const correctPassword = bcrypt.compare(req.body.password, user.password);
+    if (user == null) return res.status(200).json("User not found");
+    const correctPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!correctPassword) return res.status(200).json("Incorrect password");
 
     if (user != null && correctPassword) {
       const userId = user._id;
@@ -46,9 +51,9 @@ router.post("/login", async (req, res) => {
       return res.status(200).json({ token, userId });
     }
 
-    res.status(400).json("Invalid Credentials");
+    return res.status(200).json("Invalid Credentials");
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 });
 
